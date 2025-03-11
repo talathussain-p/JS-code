@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js-Variables</title>
+</head>
+<body>
+    <p id="demo"></p><br>
+    <script>
+        var b ="hello world";//Variables declared with the var always have Global Scope.
+       {var b = "hello world 2";}//Variables declared with varinside a { } block can be accessed from outside the block:
+       b = "hello world 3";
+        //let c ="hello world";//Var}iables declared with the let keyword have Block Scope.
+        //{let c = "hello world 2";
+       // document.getElementById("demo").innerHTML = c;}//Variables declared with let inside a { } block cannot be accessed from outside the block:
+     //const c ="hello world";//Variables declared with the let keyword have Block Scope.
+        //{const c = "hello world 2";}
+       // document.getElementById("demo").innerHTML = c;}//Variables declared with const inside a { } block cannot be accessed from outside the block:
+
+    document.getElementById("demo").innerHTML = b;
+    </script>
+</body>
+</html>
