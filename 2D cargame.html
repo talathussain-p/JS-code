@@ -5,48 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Game</title>
     <style>
-       * {
+   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
     background: #222;
+    color: white;
 }
 
 canvas {
     background: #fff;
     border: 2px solid black;
+    display: block;
+    margin: auto;
+}
+
+#resetButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none;
 }
 
     </style>
 </head>
 <body>
-    <canvas id="gameCanvas">
+    <h1>Car Racing Game 🏎️</h1>
+    <p>Score: <span id="score">0</span></p>
+    <canvas id="gameCanvas"></canvas>
+    
+    <div id="gameOverScreen">
+        <h2>GAME OVER</h2>
+        <p>Your Score: <span id="finalScore">0</span></p>
+    </div>
 
-    </canvas>
-    <script>
-   const canvas = document.getElementById("gameCanvas");
+    <button id="resetButton">Restart</button>
+
+    <audio id="bgMusic" loop>
+        <source src="background-music.mp3" type="audio/mp3">
+    </audio>
+   <script>
+    const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = 800;
 canvas.height = 400;
 
 const background = new Image();
-background.src = "background.png"; // Use a road background image
+background.src = "background.png"; // Road background image
 
 const carImage = new Image();
-carImage.src = "player-car.png"; // Use an image of a car
+carImage.src = "player-car.png"; // Player car image
 
 const npcCarImage = new Image();
-npcCarImage.src = "npc-car.png"; // Image for enemy cars
+npcCarImage.src = "npc-car.png"; // NPC car image
+
+const resetButton = document.getElementById("resetButton");
+const scoreDisplay = document.getElementById("score");
+const gameOverScreen = document.getElementById("gameOverScreen");
+const finalScore = document.getElementById("finalScore");
+const bgMusic = document.getElementById("bgMusic");
 
 let bgY = 0;
+let score = 0;
+let gameRunning = true;
 
 // Player Car
 let player = {
@@ -79,6 +110,8 @@ window.addEventListener("keyup", (e) => { keys[e.key] = false; });
 
 // Game loop functions
 function update() {
+    if (!gameRunning) return;
+
     // Move background
     bgY += 3;
     if (bgY > canvas.height) {
@@ -100,16 +133,18 @@ function update() {
             player.y < npc.y + npc.height &&
             player.y + player.height > npc.y
         ) {
-            alert("Game Over!"); // Simple collision feedback
-            document.location.reload();
+            gameOver();
         }
     }
 
     // Remove NPCs that go off-screen
     npcs = npcs.filter(npc => npc.y < canvas.height);
+
+    // Increase score over time
+    score++;
+    scoreDisplay.textContent = score;
 }
 
-// Draw everything
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -130,15 +165,49 @@ function draw() {
 function gameLoop() {
     update();
     draw();
-    requestAnimationFrame(gameLoop);
+    if (gameRunning) {
+        requestAnimationFrame(gameLoop);
+    }
 }
 
-// Spawn NPC cars every 2 seconds
-setInterval(spawnNPC, 2000);
+// Function to handle Game Over
+function gameOver() {
+    gameRunning = false;
+    bgMusic.pause();
+    
+    // Show final score
+    finalScore.textContent = score;
+
+    // Shake effect
+    document.body.classList.add("shake");
+
+    // Slow motion effect
+    setTimeout(() => {
+        gameOverScreen.style.opacity = "1"; // Fade in game over screen
+        resetButton.style.display = "block";
+    }, 1000);
+}
+
+// Reset the game
+resetButton.addEventListener("click", () => {
+    gameRunning = true;
+    player.x = 350;
+    score = 0;
+    scoreDisplay.textContent = score;
+    npcs = [];
+    resetButton.style.display = "none";
+    gameOverScreen.style.opacity = "0";
+    document.body.classList.remove("shake");
+    bgMusic.play();
+    gameLoop();
+});
 
 // Start the game
+bgMusic.volume = 0.5;
+bgMusic.play();
+setInterval(spawnNPC, 2000);
 gameLoop();
 
-         </script>
+   </script>
 </body>
 </html>
