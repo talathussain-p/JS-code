@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Game</title>
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #222;
+}
+
+canvas {
+    background: #fff;
+    border: 2px solid black;
+}
+
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas">
+
+    </canvas>
+    <script>
+   const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = 800;
+canvas.height = 400;
+
+const background = new Image();
+background.src = "background.png"; // Use a road background image
+
+const carImage = new Image();
+carImage.src = "player-car.png"; // Use an image of a car
+
+const npcCarImage = new Image();
+npcCarImage.src = "npc-car.png"; // Image for enemy cars
+
+let bgY = 0;
+
+// Player Car
+let player = {
+    x: 350,
+    y: 300,
+    width: 50,
+    height: 80,
+    speed: 5
+};
+
+let npcs = [];
+
+// Spawn NPC cars randomly
+function spawnNPC() {
+    let xPositions = [200, 300, 400, 500]; // Lane positions
+    let npc = {
+        x: xPositions[Math.floor(Math.random() * xPositions.length)],
+        y: -100,
+        width: 50,
+        height: 80,
+        speed: 3 + Math.random() * 2
+    };
+    npcs.push(npc);
+}
+
+// Key events
+let keys = {}; 
+window.addEventListener("keydown", (e) => { keys[e.key] = true; });
+window.addEventListener("keyup", (e) => { keys[e.key] = false; });
+
+// Game loop functions
+function update() {
+    // Move background
+    bgY += 3;
+    if (bgY > canvas.height) {
+        bgY = 0;
+    }
+
+    // Move player
+    if (keys["ArrowLeft"] && player.x > 200) player.x -= player.speed;
+    if (keys["ArrowRight"] && player.x + player.width < 600) player.x += player.speed;
+
+    // Move NPCs
+    for (let npc of npcs) {
+        npc.y += npc.speed;
+
+        // Collision detection
+        if (
+            player.x < npc.x + npc.width &&
+            player.x + player.width > npc.x &&
+            player.y < npc.y + npc.height &&
+            player.y + player.height > npc.y
+        ) {
+            alert("Game Over!"); // Simple collision feedback
+            document.location.reload();
+        }
+    }
+
+    // Remove NPCs that go off-screen
+    npcs = npcs.filter(npc => npc.y < canvas.height);
+}
+
+// Draw everything
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw scrolling background
+    ctx.drawImage(background, 0, bgY, canvas.width, canvas.height);
+    ctx.drawImage(background, 0, bgY - canvas.height, canvas.width, canvas.height);
+
+    // Draw player
+    ctx.drawImage(carImage, player.x, player.y, player.width, player.height);
+
+    // Draw NPCs
+    for (let npc of npcs) {
+        ctx.drawImage(npcCarImage, npc.x, npc.y, npc.width, npc.height);
+    }
+}
+
+// Game loop
+function gameLoop() {
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+}
+
+// Spawn NPC cars every 2 seconds
+setInterval(spawnNPC, 2000);
+
+// Start the game
+gameLoop();
+
+         </script>
+</body>
+</html>
