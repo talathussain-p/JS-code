@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events</title>
+</head>
+<body>
+    <button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+    <p id="demo"></p>
+    <button onchange="this.innerHTML = Date()">The time is?</button>
+    <button onmouseover="displayDate()">The time is?</button>
+    <p id="demo1"></p>
+    <button onmouseout="displayDate()">The time is?</button>
+    <button onmousedown="displayDate()">The time is?</button>
+    <button onload="displayDate()">The time is?</button>
+    <script>
+        //Event Handler
+        function displayDate(){
+            document.getElementById('demo1').innerHTML = Date();
+        }
+        //Event Listener
+    </script>
+</body>
+</html>

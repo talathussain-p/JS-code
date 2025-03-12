@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <script>
+    
+        //Function Syntax
+        let x = myFunction(7, 3);
+        document.getElementById("demo").innerHTML = x;
+
+         function myFunction(a, b) {
+         return a * b;
+         }
+         //Function Operator The () operator invokes (calls) the functio
+            let y = myFunction1(5, 5);
+            document.getElementById("demo1").innerHTML = y;
+            function myFunction1(a, b) {
+            return a + b;
+            }
+            //Function Local Variables
+           let text = "Outside: " + typeof carName;
+          document.getElementById("demo2").innerHTML = text;
+
+            function myFunction2() {
+            let carName = "Volvo";
+        let text = "Inside: " + typeof carName + " " + carName; 
+          document.getElementById("demo2").innerHTML = text;
+           }
+
+            myFunction();
+            //Functions Used as Variable Values
+            let z = myFunction3(77);
+            document.getElementById("demo4").innerHTML = z;
+            function myFunction3(age){
+            return (5/6) * (age-32) ;
+            }
+            </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Objects</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <script>
+        //Object Syntax
+        let person = {
+            firstName: 'John',
+            lastName: 'Doe',
+            age: 25
+        };
+        document.getElementById("demo").innerHTML = person.firstName + " " + person.lastName + " " + person.age;
+        //Object Properties
+        let person1 = {
+            firstName: 'John',
+            lastName: 'Doe',
+            age: 25
+        };
+         let x= person1.firstName;
+            //objectName["property"] or objectName[expression] like this [x]
+            let y= person1['lastName'];
+            let z= person1.age;
+            document.getElementById("demo1").innerHTML = x + " " + y + " " + z;
+            //Real life expmple
+            let car = {
+                make: 'Toyota',
+                model: 'Corolla',
+                year: 2020,
+                color: 'black',
+                price: 2000000
+            };
+            let carMake = car.make;
+            let carModel = car.model;
+            let carYear = car.year;
+            let carColor = car.color;
+            let carPrice = car.price;
+            document.getElementById("demo2").innerHTML = "Company  " +carMake + "<br> "+ " model " + carModel + "<br> "+" year " + carYear + "<br> " +" color  " + carColor + "<br> "+"  Price " + carPrice;
+           //Object constructor
+              function person2(firstName, lastName, age){
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.age = age;
+              }
+                const myFather = new person2('Ali', 'Khan', 50);
+                const myMother = new person2('Sara', 'Khan', 45);
+                const myBrother = new person2('Ahmed', 'Khan', 20);
+                document.getElementById("demo3").innerHTML = myFather.firstName + " " + myFather.lastName + " " + myFather.age + "<br>" + myMother.firstName + " " + myMother.lastName + " " + myMother.age + "<br>" + myBrother.firstName + " " + myBrother.lastName + " " + myBrother.age;
+    </script>
+</body>
+</html>

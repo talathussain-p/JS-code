@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Data Types</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+    <p id="demo7"></p>
+    <script>
+        //String Data Type
+        let name = "John Doe";
+        //name = 'Ali Khan';
+        //name = 'Ali "Khan"'; //use single quotes inside double quotes
+       // name = "Ali 'Khan'"; //use double quotes inside single quotes
+       // name = 'Ali \'Khan\' '; //use backslash to escape the quotes
+        document.getElementById("demo").innerHTML = name + "<br>" + typeof name;
+        //Number Data Type
+        let age = 25;
+        document.getElementById("demo1").innerHTML = age + "<br>" + typeof age;
+        //Boolean Data Type
+        let isAdult = true ;
+        let isSeniorCitizen = false;
+        document.getElementById("demo2").innerHTML = isAdult  + "  isAdult" + "<br>" + typeof isAdult + "<br>" + isSeniorCitizen + "  isSeniorCitizen" +  "<br>" + typeof isSeniorCitizen;
+        //Undefined Data Type
+        let x;
+        document.getElementById("demo3").innerHTML = x + "<br>" + typeof x;
+        //Null Data Type
+        let y = null;
+        document.getElementById("demo4").innerHTML = y + "<br>" + typeof y;
+        //Array Data Type
+        let colors = ['red', 'green', 'blue'];
+        document.getElementById("demo5").innerHTML = colors + "<br>" + typeof colors;
+        //Object Data Type
+        let person = {
+            firstName: 'John',
+            lastName: 'Doe',
+            age: 25
+        };
+        document.getElementById("demo6").innerHTML = person.firstName + "<br>"  +  person.age + "<br>"+ typeof person;
+        //Function Data Type
+        let greet = function(){
+            return 'Hello';
+        }
+        document.getElementById("demo7").innerHTML = greet() + "<br>" + typeof greet;
+    </script>
+</body>
+</html>
