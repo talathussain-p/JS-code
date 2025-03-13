@@ -7,13 +7,91 @@
 </head>
 <body>
     <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+    <p id="demo7"></p>
+    <p id="demo8"></p>
+    <p id="demo9"></p>
+    <p id="demo10"></p>
+    <p id="demo11"></p>
+    <p id="demo12"></p>
+    <p id="demo13"></p>
+    <p id="demo14"></p>
+    <p id="demo15"></p>
+    <p id="demo16"></p>
+    <p id="demo17"></p>
+    <p id="demo18"></p>
+    <p id="demo19"></p>
+    <p id="demo20"></p>
+    <p id="demo21"></p>
+    <p id="demo22"></p>
+    <p id="demo23"></p>
+
+
 
     <script>
        //Basic String Methods
        let text = "Hello World";
          let length = text.length;
-         
-        
+            let index = text.indexOf('World');
+            let slice = text.slice(0, 5);
+            let substring = text.substring(0, 5);
+            let substr = text.substr(6, 5);
+            let replace = text.replace('World', 'Ali');
+            let upperCase = text.toUpperCase();
+            let lowerCase = text.toLowerCase();
+            let charAt = text.charAt(0);
+            let charCodeAt = text.charCodeAt(0);
+            let split = text.split(' ');
+            let trim = text.trim();
+            let startsWith = text.startsWith('Hello');
+            let endsWith = text.endsWith('World');
+            let includes = text.includes('Hello');
+            let concat = text.concat(' ', 'Ali');
+            let repeat = text.repeat(2);
+            document.getElementById("demo").innerHTML = text + "<br>" + length;
+            document.getElementById("demo1").innerHTML = index;
+            document.getElementById("demo2").innerHTML = slice;
+            document.getElementById("demo3").innerHTML = substring;
+            document.getElementById("demo4").innerHTML = substr;
+            document.getElementById("demo5").innerHTML = replace;
+            document.getElementById("demo6").innerHTML = upperCase;
+            document.getElementById("demo7").innerHTML = lowerCase;
+            document.getElementById("demo8").innerHTML = charAt;
+            document.getElementById("demo9").innerHTML = charCodeAt;
+            document.getElementById("demo10").innerHTML = split;
+            document.getElementById("demo11").innerHTML = trim;
+            document.getElementById("demo12").innerHTML = startsWith;
+            document.getElementById("demo13").innerHTML = endsWith;
+            document.getElementById("demo14").innerHTML = includes;
+            document.getElementById("demo15").innerHTML = concat;
+            document.getElementById("demo16").innerHTML = repeat;
+           //String Template Literals
+              let name = 'Ali';
+                let age = 25;
+                let sentence = `My name is ${name} and I am ${age} years old`;
+                document.getElementById("demo17").innerHTML = sentence;
+        //string Search
+        let text1 = "Hello World";
+        let search = text1.search('World');
+        document.getElementById("demo18").innerHTML = search;
+        //string match
+        let text2 = "Hello World";
+        let match = text2.match(/World/g);
+        document.getElementById("demo19").innerHTML = match;
+        //string Match All
+        let text3 = "Hello World";
+        let matchAll = text3.matchAll(/World/g);
+        document.getElementById("demo20").innerHTML = matchAll;
+        //String lastIndexOf
+        let text4 = "Hello World";
+        let lastIndexOf = text4.lastIndexOf('World');
+        document.getElementById("demo21").innerHTML = lastIndexOf;
+
     </script>
 </body>
 </html>
